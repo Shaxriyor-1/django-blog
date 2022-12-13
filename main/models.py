@@ -6,6 +6,9 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
     author = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    def snippet(self):
+        return self.body[:50] + '...'
+        
     
 class Author(models.Model):
     firstname = models.CharField(max_length=200)

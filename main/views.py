@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Blog
+from .models import Blog, Author
 
 # Create your views here.
 

@@ -19,6 +19,11 @@ def blog_detail(request, pk):
     blog = Blog.objects.get(id=pk)
     return render(request, 'blog_detail.html', {'blog': blog})
 
+def blog_delete(request, pk):
+    blog = Blog.objects.get(id=pk)
+    blog.delete()
+    return render(request, 'blog_list.html', {'blog': blog})
+
 
 def blog_create(request):
     form = BlogForm(request.POST or None)

@@ -16,7 +16,7 @@ class BlogForm(forms.ModelForm):
     body = forms.CharField(required=True,
                            widget=forms.widgets.Textarea(
                                attrs={
-                                   "placeholder": "",
+                                   "placeholder": "Body of Blog",
                                    "class": "form-control",
                                    "rows": 5
                                }

@@ -1,11 +1,14 @@
-from django.shortcuts import render
-from .models import Blog, Author
+from django.shortcuts import render, redirect
+
+from .forms import BlogForm
+from .models import Blog, Profile
 
 # Create your views here.
 
 
 def index(request):
     return render(request, 'index.html')
+
 
 def blog_list(request):
     blogs = Blog.objects.all()
@@ -15,3 +18,14 @@ def blog_list(request):
 def blog_detail(request, pk):
     blog = Blog.objects.get(id=pk)
     return render(request, 'blog_detail.html', {'blog': blog})
+
+
+def blog_create(request):
+    form = BlogForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect("main:blog_list")
+    return render(request, 'post_create.html', {"form": form})

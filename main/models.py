@@ -10,10 +10,12 @@ class Author(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
+    slug = models.SlugField(max_length=200, null=True, blank=True)
     author = models.ForeignKey(Author, default=None, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     def snippet(self):
         return self.body[:50] + '...'
+    
         
     
     

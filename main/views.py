@@ -10,3 +10,8 @@ def index(request):
 def blog_list(request):
     blogs = Blog.objects.all()
     return render(request, 'blog_list.html', {'blogs':blogs})
+
+
+def blog_detail(request, pk):
+    blog = Blog.objects.get(id=pk)
+    return render(request, 'blog_detail.html', {'blog': blog})

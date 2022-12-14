@@ -8,7 +8,7 @@
 <div class="blogs">
     {% for blog in blogs%}
     <div class="blog">
-        <h2><a href="#">{{blog.title}}</a></h2>
+        <h2><a href="{% url 'blog-detail' blog.id %}">{{blog.title}}</a></h2>
         <p>{{blog.snippet}}</p>
         <p>{{blog.date}}</p>
 

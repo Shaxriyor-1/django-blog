@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from .forms import BlogForm
@@ -13,6 +14,12 @@ def index(request):
 def blog_list(request):
     blogs = Blog.objects.all()
     return render(request, 'blog_list.html', {'blogs':blogs})
+
+
+def search(request):
+    query = request.GET.get("search")
+    blogs = Blog.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+    return render(request, 'blog_list.html', {'blogs': blogs})
 
 
 def blog_detail(request, pk):

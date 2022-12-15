@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 
 {% block content %}
@@ -10,10 +10,42 @@
     <div class="blog">
         <h2><a href="{% url 'main:blog-detail' blog.id %}">{{blog.title}}</a></h2>
         <p>{{blog.snippet}}</p>
-        <small>{{blog.date}}</small> <button type="button" class="btn btn-outline-danger"> <a href="{% url 'main:blog-delete' blog.id %}">Delete</a> </button>
+        <small>{{blog.date}}</small>
+        <button
+                type="button"
+                class="btn btn-danger del-modal-button"
+                data-title="{{ blog.title }}"
+                data-pk="{{ blog.id }}"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+          Delete
+        </button>
+{#        <button type="button" class="btn btn-outline-danger"> <a href="{% url 'main:blog-delete' blog.id %}">Delete</a> </button>#}
+
 
     </div>
     {% endfor %}
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><p id="modal-title">Do you really want to delete</p></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary"><a href="" id="delete-post-button" class="del-btn">Yes,
+                        delete</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+    {% block script %}
+        <script src="{% static 'js/main.js' %}"></script>
+    {% endblock script %}
 
 {% endblock %}

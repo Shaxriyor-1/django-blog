@@ -42,3 +42,8 @@ h1 {
     bottom: 5px;
     right: 5px;
 }
+
+.del-btn {
+    color: white !important;
+    text-decoration: none;
+}

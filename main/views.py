@@ -29,7 +29,8 @@ def blog_detail(request, pk):
 def blog_delete(request, pk):
     blog = Blog.objects.get(id=pk)
     blog.delete()
-    return render(request, 'blog_list.html', {'blog': blog})
+    return redirect("main:blog_list")
+    # return render(request, 'blog_list.html', {'blog': blog})
 
 
 def blog_create(request):

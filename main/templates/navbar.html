@@ -16,22 +16,22 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'main:blog_list' %}">Blogs</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'main:blog-create' %}">Create Post</a>
-          </li>
             {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'main:blog-create' %}">Create Post</a>
+                  </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'password_change' %}">Password change</a>
+                    <a class="nav-link" href="{% url 'auth_app:password_change' %}">Password change</a>
                 </li>
             {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth_app:register' %}">Register</a>
                 </li>
             {% endif %}
 

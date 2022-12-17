@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Sign up
+Register
 {% endblock %}
 
+
 {% block content %}
+<h1>Register</h1><br><br>
+<div class="form-group">
+    <form  method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-secondary">Register</button>
+    </form>
 
-    <h1>New to the BLOG? Sign up below:</h1>
-{% csrf_token %}
-<form class="site-form" action="/auth_app/signup" method="post">
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Signup</button>
-
-</form>
-
-
+</div>
 {% endblock %}

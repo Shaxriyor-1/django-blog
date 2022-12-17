@@ -34,6 +34,7 @@ LOGOUT_REDIRECT_URL = "main:blog_list"
 # Application definition
 
 INSTALLED_APPS = [
+    'auth_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'auth_app',
 ]
 
 MIDDLEWARE = [

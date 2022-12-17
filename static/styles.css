@@ -21,8 +21,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
-
-} 
+}
 
 .blog  {
     box-shadow: 4px 4px 4px black;

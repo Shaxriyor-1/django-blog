@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+dashboard
+{% endblock %}
+
+{% block content %}
+
+
+<h1>Hello, {{ user.username|default:'Guest' }}! </h1>
+
+<div>
+    {% if user.is_authenticated %}
+        <a href="{% url 'auth_app:logout' %}">Logout</a>
+        <a href="{% url 'auth_app:password_change' %}">Change password</a>
+    {% else %}
+        <a href="{% url 'auth_app:login' %}">Login</a>
+        {% endif %}
+</div>
+
+
+<!-- {% csrf_token %}
+<form class="site-form" action="/auth_app/signup" method="post">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Signup</button>
+
+</form> -->
+
+
+{% endblock %}

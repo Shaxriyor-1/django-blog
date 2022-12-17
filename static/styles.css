@@ -3,6 +3,10 @@ body  {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+label  {
+    color: white;
+}
+
 .announcement  {
     color: aliceblue;
     display: inline-block;
@@ -13,8 +17,13 @@ body  {
     transform: translate(50%,-50%);
 }
 
-h1 {
+h1, h2{
     color: gray;
+}
+
+ul {
+    color: rgb(238, 56, 56);
+    font-size: 18px;
 }
 
 .blogs  {

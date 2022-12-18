@@ -9,10 +9,19 @@
 <div class="blogs">
     {% for blog in blogs%}
     <div class="blog">
-        <h2><a href="{% url 'main:blog-detail' blog.id %}">{{blog.title}}</a></h2>
+        <div class="d-flex justify-content-between">
+            <h2><a href="{% url 'main:blog-detail' blog.id %}">{{blog.title}}</a></h2>
+            {% if user.id == blog.author.id %}
+                <a class="btn btn-warning mb-0" href="{% url 'main:blog-update' blog.id %}">
+                    Update
+                </a>
+            {% endif %}
+        </div>
+
         <p>{{blog.snippet}}</p>
         <small>{{blog.date}}</small>
         {% if user.is_authenticated %}
+
             <button
                 type="button"
                 class="btn btn-danger del-modal-button"

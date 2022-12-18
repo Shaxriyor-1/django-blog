@@ -59,3 +59,12 @@ ul {
 span  {
     color: rgb(0, 241, 84);
 }
+
+input  {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: solid 1px gray;
+    padding: 10px;
+    border-radius: 10px;
+}

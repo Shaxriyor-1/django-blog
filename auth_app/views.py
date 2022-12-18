@@ -23,6 +23,9 @@ class PasswordsChangeView(PasswordChangeView):
 def password_change_success(request):
     return render(request, 'registration/password_change_done.html', {})
 
+def password_reset(request):
+    pass
+
 # def dashboard(request):
 #     return render(request, 'auth_app/dashboard.html')
 

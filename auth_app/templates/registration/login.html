@@ -9,7 +9,7 @@ Login
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Login">
+        <button type="submit" class="btn btn-secondary">Login</button>
     </form>
 
     <a href="{% url 'main:blog_list' %}">Back to blog list</a>

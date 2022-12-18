@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<h1>Hello, {{ user.username|default:'Guest' }}! </h1>
 <h1>Created Blogs:</h1>
 <div class="blogs">
     {% for blog in blogs%}

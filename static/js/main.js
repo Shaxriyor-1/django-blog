@@ -8,6 +8,5 @@ deleteModalButtons.forEach(deleteModalButton => deleteModalButton.addEventListen
     const pk = deleteModalButton.getAttribute("data-pk")
     const title = deleteModalButton.getAttribute("data-title")
     deleteBlogBtn.href = `${window.location.origin}/blog_delete/${pk}/`
-    modalTitle.innerHTML = `Do you really want to log out? "${title}"?`
+    modalTitle.innerHTML = `Do you really want to delete post "${title}"?`
 }))
-

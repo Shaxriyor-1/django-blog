@@ -11,15 +11,18 @@
         <h2><a href="{% url 'main:blog-detail' blog.id %}">{{blog.title}}</a></h2>
         <p>{{blog.snippet}}</p>
         <small>{{blog.date}}</small>
-        <button
+        {% if user.is_authenticated %}
+            <button
                 type="button"
                 class="btn btn-danger del-modal-button"
                 data-title="{{ blog.title }}"
                 data-pk="{{ blog.id }}"
                 data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
-          Delete
-        </button>
+              Delete
+            </button>
+        {% endif %}
+
 {#        <button type="button" class="btn btn-outline-danger"> <a href="{% url 'main:blog-delete' blog.id %}">Delete</a> </button>#}
 
 

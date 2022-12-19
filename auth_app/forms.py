@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, AuthenticationForm
 
 from django import forms
 from django.contrib.auth.models import User
@@ -30,3 +30,13 @@ class ChangePasswordForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
+
+
+class LoginForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password'})
+        }

@@ -35,9 +35,8 @@ ul {
 .blog  {
     box-shadow: 4px 4px 4px black;
     padding: 25px;
-    background-color: aliceblue;
+    /*background-color: aliceblue;*/
     position: relative;
-
  
 }
 
@@ -56,15 +55,15 @@ ul {
     text-decoration: none;
 }
 
-span  {
-    color: rgb(0, 241, 84);
-}
+/*span  {*/
+/*    color: rgb(0, 241, 84);*/
+/*}*/
 
-input  {
-    display: block;
-    width: 100%;
-    height: 50px;
-    border: solid 1px gray;
-    padding: 10px;
-    border-radius: 10px;
-}
+/*input  {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    height: 50px;*/
+/*    border: solid 1px gray;*/
+/*    padding: 10px;*/
+/*    border-radius: 10px;*/
+/*}*/

@@ -1,11 +1,11 @@
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
 from django.views import generic
 
-from auth_app.forms import SignUpForm, ChangePasswordForm
+from auth_app.forms import SignUpForm, ChangePasswordForm, LoginForm
 
 
 class UserRegisterView(generic.CreateView):
@@ -23,8 +23,16 @@ class PasswordsChangeView(PasswordChangeView):
 def password_change_success(request):
     return render(request, 'registration/password_change_done.html', {})
 
+
 def password_reset(request):
     pass
+
+
+class Login(LoginView):
+    form_class = LoginForm
+    template_name = 'registration/login.html'
+    success_url = reverse_lazy('main:blog_list')
+
 
 # def dashboard(request):
 #     return render(request, 'auth_app/dashboard.html')

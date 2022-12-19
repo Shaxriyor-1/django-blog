@@ -26,7 +26,13 @@ def search(request):
 def blog_detail(request, pk):
     blog = Blog.objects.get(id=pk)
     comments = Comment.objects.filter(post=blog)
-    return render(request, 'blog_detail.html', {'blog': blog, "comments": comments})
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'blog': blog,
+        "comments": comments,
+        "profile": profile
+    }
+    return render(request, 'blog_detail.html', context)
 
 
 def blog_delete(request, pk):

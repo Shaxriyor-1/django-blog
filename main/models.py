@@ -12,6 +12,7 @@ class Profile(models.Model):
     firstname = models.CharField(max_length=200, null=True, blank=True)
     lastname = models.CharField(max_length=200, null=True, blank=True)
     age = models.IntegerField(null=True)
+    avatar = models.ImageField(null=True)
 
     def __str__(self):
         return self.user.username

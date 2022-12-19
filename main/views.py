@@ -25,7 +25,7 @@ def search(request):
 
 def blog_detail(request, pk):
     blog = Blog.objects.get(id=pk)
-    comments = Comment.objects.filter(post=blog)
+    comments = Comment.objects.filter(post=blog).order_by('-created_at')
     profile = Profile.objects.get(user=request.user)
     context = {
         'blog': blog,

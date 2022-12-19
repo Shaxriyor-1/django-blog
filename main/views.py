@@ -69,3 +69,13 @@ def create_comment(request, pk):
         data = request.POST
         Comment.objects.create(author=request.user, comment_text=data.get("comment"), post=post)
     return redirect("main:blog-detail", post.id)
+
+
+def profile_detail(request, pk):
+    profile = Profile.objects.get(id=pk)
+    posts = Blog.objects.filter(author=profile.user).order_by('-date')
+    context = {
+        "profile": profile,
+        "posts": posts
+    }
+    return render(request, 'profile.html', context)

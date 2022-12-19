@@ -1,8 +1,9 @@
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import BlogForm
-from .models import Blog, Profile
+from .models import Blog, Profile, Comment
+
 
 # Create your views here.
 
@@ -24,13 +25,14 @@ def search(request):
 
 def blog_detail(request, pk):
     blog = Blog.objects.get(id=pk)
-    return render(request, 'blog_detail.html', {'blog': blog})
+    comments = Comment.objects.filter(post=blog)
+    return render(request, 'blog_detail.html', {'blog': blog, "comments": comments})
+
 
 def blog_delete(request, pk):
     blog = Blog.objects.get(id=pk)
     blog.delete()
     return redirect("main:blog_list")
-    # return render(request, 'blog_list.html', {'blog': blog})
 
 
 def blog_create(request):
@@ -42,3 +44,22 @@ def blog_create(request):
             post.save()
             return redirect("main:blog_list")
     return render(request, 'post_create.html', {"form": form})
+
+
+def blog_update(request, pk):
+    post = get_object_or_404(Blog, id=pk, author=request.user)
+    form = BlogForm(request.POST or None, instance=post)
+    if request.method == "POST":
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect("main:blog_list")
+    return render(request, 'post_update.html', {"form": form, 'post': post})
+
+
+def create_comment(request, pk):
+    post = get_object_or_404(Blog, id=pk)
+    if request.method == "POST":
+        data = request.POST
+        Comment.objects.create(author=request.user, comment_text=data.get("comment"), post=post)
+    return redirect("main:blog-detail", post.id)

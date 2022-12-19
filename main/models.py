@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class BaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=200, null=True, blank=True)
@@ -24,5 +29,15 @@ class Blog(models.Model):
 
     def snippet(self):
         return self.body[:50] + '...'
+
+
+class Comment(BaseModel):
+    post = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_text = models.TextField()
+
+    def __str__(self):
+        return f"{self.post.title} - {self.author.username}"
+
     
         

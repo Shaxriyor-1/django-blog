@@ -4,22 +4,34 @@
 
 {% block content %}
 
+<h1>Hello, {{ user.username|default:'Guest' }}! </h1>
 <h1>Created Blogs:</h1>
 <div class="blogs">
     {% for blog in blogs%}
     <div class="blog">
-        <h2><a href="{% url 'main:blog-detail' blog.id %}">{{blog.title}}</a></h2>
+        <div class="d-flex justify-content-between">
+            <h2><a href="{% url 'main:blog-detail' blog.id %}">{{blog.title}}</a></h2>
+            {% if user.id == blog.author.id %}
+                <a class="btn btn-warning mb-0" href="{% url 'main:blog-update' blog.id %}">
+                    Update
+                </a>
+            {% endif %}
+        </div>
+
         <p>{{blog.snippet}}</p>
         <small>{{blog.date}}</small>
-        <button
+        {% if user.is_authenticated %}
+            
+            <button
                 type="button"
                 class="btn btn-danger del-modal-button"
                 data-title="{{ blog.title }}"
                 data-pk="{{ blog.id }}"
                 data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
-          Delete
-        </button>
+              Delete
+            </button>
+        {% endif %}
 {#        <button type="button" class="btn btn-outline-danger"> <a href="{% url 'main:blog-delete' blog.id %}">Delete</a> </button>#}
 
 

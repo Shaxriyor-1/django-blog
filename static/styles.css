@@ -1,7 +1,11 @@
-body  {
+/* body  {
     background-image: url("myg.gif");
     font-family: Arial, Helvetica, sans-serif;
 }
+
+label  {
+   color: white;
+} */
 
 .announcement  {
     color: aliceblue;
@@ -13,23 +17,26 @@ body  {
     transform: translate(50%,-50%);
 }
 
-h1 {
+h1, h2{
     color: gray;
+}
+
+ul {
+    color: rgb(238, 56, 56);
+    font-size: 18px;
 }
 
 .blogs  {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
-
-} 
+}
 
 .blog  {
     box-shadow: 4px 4px 4px black;
     padding: 25px;
-    background-color: aliceblue;
+    /*background-color: aliceblue;*/
     position: relative;
-
  
 }
 
@@ -47,3 +54,16 @@ h1 {
     color: white !important;
     text-decoration: none;
 }
+
+/*span  {*/
+/*    color: rgb(0, 241, 84);*/
+/*}*/
+
+/*input  {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    height: 50px;*/
+/*    border: solid 1px gray;*/
+/*    padding: 10px;*/
+/*    border-radius: 10px;*/
+/*}*/

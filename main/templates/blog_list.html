@@ -21,7 +21,7 @@
         <p>{{blog.snippet}}</p>
         <small>{{blog.date}}</small>
         {% if user.is_authenticated %}
-
+            
             <button
                 type="button"
                 class="btn btn-danger del-modal-button"
@@ -32,7 +32,6 @@
               Delete
             </button>
         {% endif %}
-
 {#        <button type="button" class="btn btn-outline-danger"> <a href="{% url 'main:blog-delete' blog.id %}">Delete</a> </button>#}
 
 

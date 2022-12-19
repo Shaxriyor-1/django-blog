@@ -25,8 +25,14 @@ def search(request):
 
 def blog_detail(request, pk):
     blog = Blog.objects.get(id=pk)
-    comments = Comment.objects.filter(post=blog)
-    return render(request, 'blog_detail.html', {'blog': blog, "comments": comments})
+    comments = Comment.objects.filter(post=blog).order_by('-created_at')
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'blog': blog,
+        "comments": comments,
+        "profile": profile
+    }
+    return render(request, 'blog_detail.html', context)
 
 
 def blog_delete(request, pk):
@@ -63,3 +69,13 @@ def create_comment(request, pk):
         data = request.POST
         Comment.objects.create(author=request.user, comment_text=data.get("comment"), post=post)
     return redirect("main:blog-detail", post.id)
+
+
+def profile_detail(request, pk):
+    profile = Profile.objects.get(id=pk)
+    posts = Blog.objects.filter(author=profile.user).order_by('-date')
+    context = {
+        "profile": profile,
+        "posts": posts
+    }
+    return render(request, 'profile.html', context)

@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import BlogForm
+from .forms import BlogForm, ProfileForm
 from .models import Blog, Profile, Comment
 
 
@@ -79,3 +79,17 @@ def profile_detail(request, pk):
         "posts": posts
     }
     return render(request, 'profile.html', context)
+
+
+def profile_update(request, pk):
+    profile = get_object_or_404(Profile, id=pk)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect("main:profile-detail", pk)
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'profile_update.html', {"form": form})

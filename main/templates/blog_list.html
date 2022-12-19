@@ -20,7 +20,7 @@
 
         <p>{{blog.snippet}}</p>
         <small>{{blog.date}}</small>
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and user.id == blog.author.id %}
             
             <button
                 type="button"

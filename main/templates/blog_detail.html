@@ -115,7 +115,11 @@
                       </div>
                     </div>
                     <div class="float-end mt-2 pt-1">
+                        {% if user.is_authenticated %}
                       <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+                        {% else %}
+                            <p>You need to log in to comment</p>
+                        {% endif %}
         {#              <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>#}
                     </div>
               </form>

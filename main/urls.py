@@ -14,4 +14,5 @@ urlpatterns = [
     path('blog-update/<int:pk>/', views.blog_update, name='blog-update'),
     path('comment-create/<int:pk>/', views.create_comment, name='comment-create'),
     path('profile/<int:pk>/', views.profile_detail, name='profile-detail'),
+    path('update-profile/<int:pk>/', views.profile_update, name='profile-update'),
 ]

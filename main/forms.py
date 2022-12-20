@@ -1,6 +1,6 @@
 from django import forms
 
-from main.models import Blog
+from main.models import Blog, Profile
 
 
 class BlogForm(forms.ModelForm):
@@ -27,3 +27,33 @@ class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         exclude = ("author", 'slug', 'date')
+
+
+class ProfileForm(forms.ModelForm):
+    age = forms.IntegerField(required=False, widget=forms.widgets.NumberInput(
+                               attrs={
+                                   "class": "form-control",
+                                   "type": "number"
+                               }
+                           ),
+                           label="Age", min_value=8)
+    avatar = forms.ImageField(required=False, widget=forms.widgets.FileInput(
+                               attrs={
+                                   "class": "form-control",
+                                   "id": "avatar-input"
+                               }
+                           ),
+                           label="Avatar")
+
+    class Meta:
+        model = Profile
+        fields = ['firstname', 'lastname', 'age', 'avatar']
+
+        widgets = {
+            'firstname': forms.TextInput(attrs={'class': 'form-control'}),
+            'lastname': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            "firstname": "First Name",
+            "lastname": "Last Name",
+        }

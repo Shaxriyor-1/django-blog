@@ -1,4 +1,5 @@
 from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 from main.models import Blog, Profile
 
@@ -14,15 +15,7 @@ class BlogForm(forms.ModelForm):
                             label="Title",
                         )
     body = forms.CharField(required=True,
-                           widget=forms.widgets.Textarea(
-                               attrs={
-                                   "placeholder": "Body of Blog",
-                                   "class": "form-control",
-                                   "rows": 5
-                               }
-                           ),
-                           label="Body",
-                           )
+                           widget=CKEditorWidget(attrs={"class": "form-control"}), label="Body",)
 
     class Meta:
         model = Blog

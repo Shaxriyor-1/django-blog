@@ -11,7 +11,6 @@ deleteModalButtons.forEach(deleteModalButton => deleteModalButton.addEventListen
     modalTitle.innerHTML = `Do you really want to delete post "${title}"?`
 }))
 
-
 const avatarUrl = $("#submit-btn").attr("data-avatar-url")
 $("#avatar-input").parent().attr('id', 'avatar-p');
 $("#avatar-p").append(`<div class="mt-3">Current: <img 
@@ -20,5 +19,3 @@ $("#avatar-p").append(`<div class="mt-3">Current: <img
         src='${avatarUrl}'/>
         </div>`)
 
-
-        

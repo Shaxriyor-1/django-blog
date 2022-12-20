@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+<<<<<<< HEAD:main/templates/profile_update.html
+
+=======
+>>>>>>> c3eea4a09b5ad120d89a42abd994ecd9bff284ff:main/templates/update_profile.html
+{% block title %}
+Update Profile
+{% endblock %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+    {% if user.profile.id == profile.user.id %}
+        <h1>Update Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="submit-btn" data-avatar-url="{{ profile.avatar.url }}" class="btn btn-success">Update</button>
+        </form>
+    {% else %}
+        <p class="mt-5 text-center">You are not allowed to update this profile because you are not the owner of this profile</p>
+    {% endif %}
+
+{% else %}
+    <p>You are not allowed to update posts unless you have registered</p>
+{% endif %}
+
+
+{% endblock %}
+
+{% block script %}
+        <script src="{% static 'js/main.js' %}"></script>
+{% endblock script %}

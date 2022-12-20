@@ -20,11 +20,13 @@
             <p class="text-muted mb-1">Full Stack Developer</p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Follow</button>
+                {% if user.id == profile.user.id %}
+                    <a href="{% url 'main:profile-update' profile.id %}" class="btn btn-warning">Update Profile</a>
+                {% endif %}
               <button type="button" class="btn btn-outline-primary ms-1">Message</button>
             </div>
             <a href="{% url 'auth_app:password_change' %}">Change password</a><br>
-            <a href="{% url 'main:profile-update' user.id %}">Edit personal info</a><br>
+{#            <a href="{% url 'main:profile-update' user.id %}">Edit personal info</a><br>#}
             <a href="{% url 'logout' %}">Logout</a>
           </div>
         </div>

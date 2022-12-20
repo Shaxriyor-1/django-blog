@@ -1,4 +1,5 @@
 from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 from main.models import Blog, Profile
 
@@ -14,49 +15,25 @@ class BlogForm(forms.ModelForm):
                             label="Title",
                         )
     body = forms.CharField(required=True,
-                           widget=forms.widgets.Textarea(
-                               attrs={
-                                   "placeholder": "Body of Blog",
-                                   "class": "form-control",
-                                   "rows": 5
-                               }
-                           ),
-                           label="Body",
-                           )
+                           widget=CKEditorWidget(attrs={"class": "form-control"}), label="Body",)
 
     class Meta:
         model = Blog
         exclude = ("author", 'slug', 'date')
-        
-        
+
 
 class ProfileForm(forms.ModelForm):
-    firstname = forms.CharField(required=False,
-                            widget=forms.widgets.TextInput(
-                                attrs={
-                                    "class": "form-control",
-                                }
-                            ),
-                            label="First name",
-                            )
-    lastname = forms.CharField(required=False,
-                                widget=forms.widgets.TextInput(
-                                    attrs={
-                                        "class": "form-control",
-                                    }
-                                ),
-                                label="Last Name",
-                                )
     age = forms.IntegerField(required=False, widget=forms.widgets.NumberInput(
                                attrs={
                                    "class": "form-control",
                                    "type": "number"
                                }
                            ),
-                           label="Age")
+                           label="Age", min_value=8)
     avatar = forms.ImageField(required=False, widget=forms.widgets.FileInput(
                                attrs={
                                    "class": "form-control",
+                                   "id": "avatar-input"
                                }
                            ),
                            label="Avatar")

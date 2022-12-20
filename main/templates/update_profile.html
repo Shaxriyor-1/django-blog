@@ -9,25 +9,16 @@ Update Profile
 
 
 {% if user.is_authenticated %}
-    <h1>Update Profile</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    {% if user.profile.id == profile.user.id %}
+        <h1>Update Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             {{ form.as_p }}
-        <button type="submit" id="submit-btn" data-avatar-url="{{ profile.avatar.url }}" class="btn btn-success">Update</button>
-    </form>
-
-
-
-{#    {% if user.id == post.author.id %}#}
-{#        <h1>Update Profile</h1>#}
-{#        <form method="post">#}
-{#            {% csrf_token %}#}
-{#            {{ form.as_p }}#}
-{#            <button type="submit" class="btn btn-success">Update</button>#}
-{#        </form>#}
-{#    {% else %}#}
-{#        <p>You are not allowed to update or delete posts because you are not the author of this blog</p>#}
-{#    {% endif %}#}
+            <button type="submit" id="submit-btn" data-avatar-url="{{ profile.avatar.url }}" class="btn btn-success">Update</button>
+        </form>
+    {% else %}
+        <p class="mt-5 text-center">You are not allowed to update this profile because you are not the owner of this profile</p>
+    {% endif %}
 
 {% else %}
     <p>You are not allowed to update posts unless you have registered</p>

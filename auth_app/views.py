@@ -11,7 +11,7 @@ from auth_app.forms import SignUpForm, ChangePasswordForm, LoginForm
 class UserRegisterView(generic.CreateView):
     form_class = SignUpForm
     template_name = 'registration/signup.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('auth_app:login')
 
 
 class PasswordsChangeView(PasswordChangeView):
